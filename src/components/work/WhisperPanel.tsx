@@ -15,7 +15,7 @@ export default function WhisperPanel() {
             <PanelIntro title="Whisper of Ether">
                 A <strong>magic</strong> mod for Fabric. Forge <strong>runes</strong> into your weapons and armor, then automate the magic blocks that power them.
             </PanelIntro>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="my-auto grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <Shot src="/gallery/whisper/splash.webp" alt="Whisper of Ether" className="col-span-2 aspect-video object-cover" />
                 <Shot
                     src="/gallery/whisper/interfaces.webp"
@@ -25,7 +25,7 @@ export default function WhisperPanel() {
                 <Shot src="/gallery/whisper/crafting.webp" alt="Crafting screen" className="aspect-video object-cover" />
                 <Shot src="/gallery/whisper/furnaces.webp" alt="Custom furnaces" className="aspect-video object-cover" />
             </div>
-            <div className="mt-auto flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-6">
                 <Button variant="link" href={WHISPER.modrinth}>
                     <Icon name="modrinth" className="size-4" />
                     Modrinth

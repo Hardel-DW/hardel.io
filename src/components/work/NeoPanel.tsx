@@ -25,12 +25,12 @@ export default function NeoPanel() {
                 Data-driven <strong>enchantments</strong>, <strong>structures</strong> and gameplay, shipped as a <strong>datapack</strong> and as a <strong>mod</strong> for Fabric, NeoForge, Forge
                 and Quilt.
             </PanelIntro>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center sm:py-6">
+            <div className="my-auto flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center sm:py-6">
                 {NEO.map((project, index) => (
                     <NeoCard key={project.name} project={project} side={SIDES[index]} />
                 ))}
             </div>
-            <Button variant="link" href={MODRINTH_URL} className="mt-auto">
+            <Button variant="link" href={MODRINTH_URL}>
                 <Icon name="modrinth" className="size-4" />
                 {compact(MODRINTH_DOWNLOADS)}+ downloads on Modrinth
             </Button>
