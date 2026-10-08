@@ -1,155 +1,28 @@
 import PanelIntro from "@/components/work/PanelIntro";
+import { highlight, type Kind } from "@/lib/highlight";
 import { cn } from "@/lib/utils";
 
-type Kind = "tag" | "attr" | "value" | "bind" | "text" | "punct";
+const SOURCE = `
+<column class="gap-3 p-5 rounded-xl bg-stone-900 shadow-xl">
+    <row class="gap-2 items-center">
+        <item id="minecraft:diamond_pickaxe" class="size-6"/>
+        <text class="font-bold text-white">Hello world</text>
+    </row>
+    <row class="gap-1">
+        <text class="text-stone-300">You mined</text>
+        <text class="font-bold text-amber-400">{{blocks}}</text>
+        <text class="text-stone-300">blocks</text>
+    </row>
+    <stack class="h-2 rounded-full bg-stone-800">
+        <div class="w-2/3 rounded-full bg-amber-500"/>
+    </stack>
+    <button id="claim" class="bg-amber-600 rounded-md">
+        <text key="studio.claim"/>
+    </button>
+</column>
+`;
 
-const CODE: readonly (readonly (readonly [Kind, string])[])[] = [
-    [
-        ["punct", "<"],
-        ["tag", "column"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"gap-3 p-5 rounded-xl bg-stone-900 shadow-xl"'],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "    <"],
-        ["tag", "row"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"gap-2 items-center"'],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "item"],
-        ["attr", " id"],
-        ["punct", "="],
-        ["value", '"minecraft:diamond_pickaxe"'],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"size-6"'],
-        ["punct", "/>"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "text"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"font-bold text-white"'],
-        ["punct", ">"],
-        ["text", "Hello world"],
-        ["punct", "</"],
-        ["tag", "text"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "    </"],
-        ["tag", "row"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "    <"],
-        ["tag", "row"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"gap-1"'],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "text"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"text-stone-300"'],
-        ["punct", ">"],
-        ["text", "You mined"],
-        ["punct", "</"],
-        ["tag", "text"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "text"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"font-bold text-amber-400"'],
-        ["punct", ">"],
-        ["bind", "{{blocks}}"],
-        ["punct", "</"],
-        ["tag", "text"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "text"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"text-stone-300"'],
-        ["punct", ">"],
-        ["text", "blocks"],
-        ["punct", "</"],
-        ["tag", "text"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "    </"],
-        ["tag", "row"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "    <"],
-        ["tag", "stack"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"h-2 rounded-full bg-stone-800"'],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "div"],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"w-2/3 rounded-full bg-amber-500"'],
-        ["punct", "/>"]
-    ],
-    [
-        ["punct", "    </"],
-        ["tag", "stack"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "    <"],
-        ["tag", "button"],
-        ["attr", " id"],
-        ["punct", "="],
-        ["value", '"claim"'],
-        ["attr", " class"],
-        ["punct", "="],
-        ["value", '"bg-amber-600 rounded-md"'],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "        <"],
-        ["tag", "text"],
-        ["attr", " key"],
-        ["punct", "="],
-        ["value", '"studio.claim"'],
-        ["punct", "/>"]
-    ],
-    [
-        ["punct", "    </"],
-        ["tag", "button"],
-        ["punct", ">"]
-    ],
-    [
-        ["punct", "</"],
-        ["tag", "column"],
-        ["punct", ">"]
-    ]
-];
-
-const LINES = CODE.map((tokens, line) => ({ number: line + 1, tokens: tokens.map(([kind, text], column) => ({ column, kind, text })) }));
+const LINES = highlight(SOURCE);
 
 export default function EnginePanel() {
     return (
@@ -165,7 +38,7 @@ export default function EnginePanel() {
                             <span key={line.number} className="block whitespace-pre">
                                 <span className="mr-4 inline-block w-4 text-right text-bark-700 select-none">{line.number}</span>
                                 {line.tokens.map((token) => (
-                                    <span key={token.column} className={tokenClass(token.kind)}>
+                                    <span key={token.id} className={tokenClass(token.kind)}>
                                         {token.text}
                                     </span>
                                 ))}
