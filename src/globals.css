@@ -424,6 +424,7 @@
 
     html {
         color-scheme: dark;
+        overflow-anchor: none;
         scrollbar-color: var(--color-bark-700) transparent;
         scroll-behavior: smooth;
         scroll-padding-top: var(--header-offset);
