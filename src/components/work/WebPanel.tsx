@@ -16,17 +16,14 @@ export default function WebPanel() {
             <PanelIntro title="Websites">
                 The sites around my projects, static and fast. <strong>React</strong>, <strong>TypeScript</strong>, <strong>Vite</strong>, Tailwind and Cloudflare Workers.
             </PanelIntro>
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                 {SITES.map((site) => (
                     <a key={site.domain} href={site.href} target="_blank" rel="noreferrer" className="group flex flex-col gap-3">
-                        <BrowserFrame domain={site.domain} className="bg-bark-950 transition-colors duration-200 group-hover:border-bark-700">
+                        <BrowserFrame domain={site.domain} title={site.name} className="bg-bark-950 transition-colors duration-200 group-hover:border-bark-700">
                             <Picture src={site.image} alt={site.name} eager className="aspect-16/10 w-full object-cover object-top" />
                         </BrowserFrame>
-                        <span className="flex items-center justify-between gap-3 px-1">
-                            <span className="flex flex-col">
-                                <span className="font-semibold text-cream-50">{site.name}</span>
-                                <span className="text-sm text-cream-400">{site.text}</span>
-                            </span>
+                        <span className="flex items-center justify-between gap-3 px-1 max-sm:hidden">
+                            <span className="text-sm text-cream-400">{site.text}</span>
                             <Icon name="northEast" className="size-4 text-cream-500 transition-colors group-hover:text-oak-400" />
                         </span>
                     </a>

@@ -16,7 +16,7 @@ export default function Home() {
             <Work />
             <Showcase />
             <div className="grid gap-(--gap) lg:grid-cols-[1.2fr_0.8fr]">
-                <div className="flex flex-col gap-(--gap)">
+                <div className="flex min-w-0 flex-col gap-(--gap)">
                     <About />
                     <Contact />
                 </div>

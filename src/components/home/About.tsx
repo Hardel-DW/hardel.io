@@ -10,7 +10,7 @@ export default function About() {
                 <strong>Hey</strong>, I'm Hardel
             </SectionTitle>
             <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-                <HexImage src="/hardel.webp" alt="Hardel" size={112} live className="w-28 shrink-0" />
+                <HexImage src="/hardel.webp" alt="Hardel" size={112} live className="w-28 shrink-0 max-sm:hidden" />
                 <div className="flex flex-col gap-4">
                     <p className="keys text-pretty text-cream-400">
                         25 years old, French <strong>developer</strong> and <strong>web designer</strong>, living off Minecraft full time. I build <strong>technical mods</strong> for developers and
