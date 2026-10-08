@@ -41,10 +41,7 @@ function Chip({ selected, onSelect, children }: { selected: boolean; onSelect: (
             type="button"
             aria-pressed={selected}
             onClick={onSelect}
-            className={cn(
-                "h-8 shrink-0 cursor-pointer rounded-full border px-3.5 font-mono text-label transition-colors duration-150",
-                selected ? "border-oak-500 bg-oak-600 text-white" : "border-line text-cream-400 hover:border-bark-700 hover:text-cream-50"
-            )}>
+            className="h-8 shrink-0 cursor-pointer rounded-full border border-line px-3.5 font-mono text-label text-cream-400 transition-colors duration-150 not-aria-pressed:hover:border-bark-700 not-aria-pressed:hover:text-cream-50 aria-pressed:border-oak-500 aria-pressed:bg-oak-600 aria-pressed:text-white">
             {children}
         </button>
     );
