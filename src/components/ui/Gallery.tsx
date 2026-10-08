@@ -8,7 +8,8 @@ export type Shot = Slide & { tag: string; span?: "wide" | "tall" | "big" };
 export default function Gallery({ shots }: { shots: readonly Shot[] }) {
     const [filter, setFilter] = useState<string | null>(null);
     const [open, setOpen] = useState<number | null>(null);
-    const tags = [...new Set(shots.map((shot) => shot.tag))];
+    const count = (tag: string) => shots.filter((shot) => shot.tag === tag).length;
+    const tags = [...new Set(shots.map((shot) => shot.tag))].sort((a, b) => count(b) - count(a));
     const visible = shots.filter((shot) => filter === null || shot.tag === filter);
     return (
         <div className="flex flex-col gap-6">
