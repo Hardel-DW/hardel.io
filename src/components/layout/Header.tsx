@@ -11,7 +11,7 @@ const closeOnLink = (event: React.MouseEvent<HTMLElement>) => {
 
 export default function Header() {
     return (
-        <header className="fixed inset-x-0 top-(--gap) z-50">
+        <header className="group/header fixed inset-x-0 top-(--gap) z-50">
             <div className="page">
                 <div className="card flex h-14 items-center gap-6 pr-2.5 pl-4">
                     <nav className="scroll-spy flex items-center gap-6">
@@ -35,25 +35,34 @@ export default function Header() {
                                 <Icon name={social.name} className="size-4.5" />
                             </a>
                         ))}
-                        <a
-                            href="/#contact"
-                            className="bevel ml-2 hidden h-9 items-center gap-2 bg-oak-600 px-4 text-sm font-semibold text-white transition-colors duration-150 bevel-2 hover:bg-oak-500 sm:flex">
+                        <a href="/#contact" className="bevel ml-2 flex h-9 items-center gap-2 bg-oak-600 px-4 text-sm font-semibold text-white transition-colors duration-150 bevel-2 hover:bg-oak-500">
                             Commission
                         </a>
-                        <button type="button" popoverTarget="menu" aria-label="Menu" className="grid size-9 cursor-pointer place-items-center rounded-lg text-cream-200 hover:bg-bark-800 md:hidden">
-                            <Icon name="menu" />
+                        <button
+                            type="button"
+                            popoverTarget="menu"
+                            aria-label="Menu"
+                            className="menu-anchor ml-1 grid size-9 cursor-pointer place-items-center rounded-lg text-cream-200 hover:bg-bark-800 md:hidden">
+                            <Icon name="menu" className="group-has-[#menu:popover-open]/header:hidden" />
+                            <Icon name="close" className="hidden group-has-[#menu:popover-open]/header:block" />
                         </button>
                     </div>
                 </div>
-                <nav
-                    id="menu"
-                    popover="auto"
-                    onClick={closeOnLink}
-                    className="card scroll-spy fixed top-[calc(3.5rem+var(--gap)*2)] right-(--gap) left-(--gap) m-0 w-auto flex-col gap-1 p-2 open:flex md:hidden">
+                <nav id="menu" popover="auto" onClick={closeOnLink} className="card menu-popover scroll-spy w-56 flex-col gap-1 p-2 open:flex md:hidden">
                     <NavLinks />
-                    <a href="/#contact" className="bevel mt-1 flex h-10 items-center justify-center bg-oak-600 text-sm font-semibold text-white bevel-2">
-                        Commission
-                    </a>
+                    <div className="mt-1 flex gap-0.5 border-t border-line pt-2">
+                        {HEADER_SOCIALS.map((social) => (
+                            <a
+                                key={social.name}
+                                href={social.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label={social.label}
+                                className="grid size-9 place-items-center rounded-lg text-cream-400 transition-colors duration-150 hover:bg-bark-800 hover:text-cream-50">
+                                <Icon name={social.name} className="size-4.5" />
+                            </a>
+                        ))}
+                    </div>
                 </nav>
             </div>
         </header>

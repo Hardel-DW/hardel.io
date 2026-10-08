@@ -337,6 +337,37 @@
     transition-timing-function: var(--ease-emphasized);
 }
 
+@utility menu-anchor {
+    anchor-name: --menu;
+}
+
+@utility menu-popover {
+    position-anchor: --menu;
+    position-area: block-end span-inline-start;
+    margin: 0.75rem 0 0;
+    inset: auto;
+    opacity: 1;
+    translate: 0 0;
+    transition:
+        opacity 200ms var(--ease-soft),
+        translate 300ms var(--ease-emphasized),
+        display 300ms allow-discrete,
+        overlay 300ms allow-discrete;
+
+    &:not(:popover-open) {
+        opacity: 0;
+        translate: 0 -6px;
+    }
+
+    @starting-style {
+        &:popover-open {
+            opacity: 0;
+            translate: 0 -6px;
+        }
+    }
+}
+
+
 @utility count {
     counter-reset: n var(--n);
     animation: count 1.8s var(--ease-soft) 300ms both;
