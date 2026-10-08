@@ -3,26 +3,27 @@ import Lightbox, { type Slide } from "@/components/ui/Lightbox";
 import Picture from "@/components/ui/Picture";
 import { cn } from "@/lib/utils";
 
-type Filter = Kind | "All";
-type Kind = (typeof KINDS)[number];
-export type Shot = Slide & { kind: Kind; span?: "wide" | "tall" | "big" };
-
-const KINDS = ["Structures", "Worldgen", "Textures", "Models", "Shaders", "Enchantments"] as const;
+export type Shot = Slide & { tag: string; span?: "wide" | "tall" | "big" };
 
 export default function Gallery({ shots }: { shots: readonly Shot[] }) {
-    const [filter, setFilter] = useState<Filter>("All");
+    const [filter, setFilter] = useState<string | null>(null);
     const [open, setOpen] = useState<number | null>(null);
-    const kinds = KINDS.filter((kind) => shots.some((shot) => shot.kind === kind));
-    const visible = shots.filter((shot) => filter === "All" || shot.kind === filter);
+    const tags = [...new Set(shots.map((shot) => shot.tag))];
+    const visible = shots.filter((shot) => filter === null || shot.tag === filter);
     return (
         <div className="flex flex-col gap-6">
-            <div className="no-scrollbar -mx-2 flex gap-1.5 overflow-x-auto px-2">
-                {(["All", ...kinds] as const).map((kind) => (
-                    <Chip key={kind} selected={filter === kind} onSelect={() => setFilter(kind)}>
-                        {kind}
+            {tags.length > 1 && (
+                <div className="no-scrollbar -mx-2 flex gap-1.5 overflow-x-auto px-2">
+                    <Chip selected={filter === null} onSelect={() => setFilter(null)}>
+                        All
                     </Chip>
-                ))}
-            </div>
+                    {tags.map((tag) => (
+                        <Chip key={tag} selected={filter === tag} onSelect={() => setFilter(tag)}>
+                            {tag}
+                        </Chip>
+                    ))}
+                </div>
+            )}
             <div className="grid grid-flow-dense auto-rows-37.5 grid-cols-2 gap-2.5 sm:auto-rows-45 md:grid-cols-4 lg:auto-rows-52.5">
                 {shots.map((shot) => (
                     <Tile key={shot.src} shot={shot} shown={visible.includes(shot)} delay={visible.indexOf(shot) * 60} onOpen={() => setOpen(visible.indexOf(shot))} />
@@ -62,7 +63,7 @@ function Tile({ shot, shown, delay, onOpen }: { shot: Shot; shown: boolean; dela
             <Picture src={shot.src} alt="" className="size-full object-cover transition-transform duration-700 ease-soft group-hover:scale-103" />
             <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center gap-2 rounded-lg bg-bark-950/85 px-3 py-1.5 opacity-0 transition duration-300 ease-soft group-hover:translate-y-0 group-hover:opacity-100">
                 <span className="text-sm font-medium text-cream-50">{shot.title}</span>
-                <span className="ml-auto font-mono text-micro text-oak-300">{shot.kind}</span>
+                <span className="ml-auto font-mono text-micro text-oak-300">{shot.tag}</span>
             </span>
         </button>
     );
