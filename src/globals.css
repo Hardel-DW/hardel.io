@@ -153,6 +153,18 @@
     initial-value: 0deg;
 }
 
+@property --neo-out {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@property --neo-back {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
 @property --n {
     syntax: "<integer>";
     inherits: false;
@@ -162,48 +174,6 @@
 @keyframes turn {
     to {
         --angle: 360deg;
-    }
-}
-
-@keyframes neo-surface {
-    0% {
-        translate: 0 var(--rest-y);
-        rotate: var(--rest-r);
-        z-index: 1;
-    }
-    45% {
-        translate: var(--out) 4px;
-        rotate: calc(var(--rest-r) / 2);
-        z-index: 1;
-    }
-    46% {
-        z-index: 10;
-    }
-    100% {
-        translate: 0 -12px;
-        rotate: 0deg;
-        z-index: 10;
-    }
-}
-
-@keyframes neo-sink {
-    0% {
-        translate: 0 -12px;
-        rotate: 0deg;
-        z-index: 10;
-    }
-    54% {
-        translate: var(--out) 4px;
-        rotate: calc(var(--rest-r) / 2);
-        z-index: 10;
-    }
-    55% {
-        z-index: 1;
-    }
-    100% {
-        translate: 0 var(--rest-y);
-        rotate: var(--rest-r);
-        z-index: 1;
     }
 }
 
@@ -320,16 +290,35 @@
 @utility neo-card {
     position: relative;
     z-index: 1;
-    translate: 0 var(--rest-y);
-    rotate: var(--rest-r);
-}
+    translate: calc(var(--neo-out) + var(--neo-back)) 0;
+    transform: translateY(var(--rest-y)) rotate(var(--rest-r));
+    transition:
+        --neo-out 520ms cubic-bezier(0.6, 0, 0.4, 1),
+        --neo-back 260ms cubic-bezier(0.2, 0.8, 0.3, 1),
+        transform 520ms var(--ease-soft),
+        z-index 0s linear 290ms,
+        border-color 300ms;
 
-@utility neo-surface {
-    animation: neo-surface 480ms var(--ease-soft) both;
-}
+    @variant hover {
+        z-index: 10;
+        --neo-out: calc(44px * var(--dir));
+        --neo-back: calc(-28px * var(--dir));
+        transform: translateY(-12px) rotate(0deg);
+        transition:
+            --neo-out 260ms cubic-bezier(0.2, 0.8, 0.3, 1),
+            --neo-back 520ms cubic-bezier(0.6, 0, 0.4, 1),
+            transform 520ms var(--ease-soft),
+            z-index 0s linear 150ms,
+            border-color 300ms;
+    }
 
-@utility neo-sink {
-    animation: neo-sink 480ms var(--ease-soft) both;
+    @variant max-sm {
+        &,
+        &:hover {
+            translate: none;
+            transform: none;
+        }
+    }
 }
 
 @utility tab-anchor {

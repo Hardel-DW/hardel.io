@@ -1,16 +1,14 @@
-import { useState } from "react";
 import TextLink from "@/components/ui/TextLink";
 import PanelIntro from "@/components/work/PanelIntro";
 import { MODRINTH_DOWNLOADS, MODRINTH_URL, type Project } from "@/lib/projects";
 import { cn, compact } from "@/lib/utils";
 
-type Phase = "idle" | "enter" | "leave";
 type Side = "left" | "middle" | "right";
 
 const SIDES: readonly Side[] = ["left", "middle", "right"];
 const REST = {
-    left: { "--out": "-56px", "--rest-y": "12px", "--rest-r": "-6deg" },
-    right: { "--out": "56px", "--rest-y": "16px", "--rest-r": "4deg" }
+    left: { "--dir": -1, "--rest-y": "12px", "--rest-r": "-6deg" },
+    right: { "--dir": 1, "--rest-y": "16px", "--rest-r": "4deg" }
 } as const;
 
 const NEO: readonly Project[] = [
@@ -26,7 +24,7 @@ export default function NeoPanel() {
                 Data-driven <strong>enchantments</strong>, <strong>structures</strong> and gameplay, shipped as a <strong>datapack</strong> and as a <strong>mod</strong> for Fabric, NeoForge, Forge
                 and Quilt.
             </PanelIntro>
-            <div className="flex flex-wrap items-end justify-center gap-y-4 py-6">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-center sm:py-6">
                 {NEO.map((project, index) => (
                     <NeoCard key={project.name} project={project} side={SIDES[index]} />
                 ))}
@@ -39,25 +37,20 @@ export default function NeoPanel() {
 }
 
 function NeoCard({ project, side }: { project: Project; side: Side }) {
-    const [phase, setPhase] = useState<Phase>("idle");
     return (
         <a
             href={project.href}
             target="_blank"
             rel="noreferrer"
-            onPointerEnter={() => setPhase("enter")}
-            onPointerLeave={() => setPhase("leave")}
             style={side === "middle" ? undefined : REST[side]}
             className={cn(
-                "card group flex w-52 flex-col gap-4 p-5 transition-[border-color] duration-300 hover:border-oak-600/60",
-                side === "middle" && "relative z-2 bg-bark-800 transition-[translate,border-color] duration-300 ease-soft hover:z-10 hover:-translate-y-3",
+                "card group flex items-center gap-4 p-4 hover:border-oak-600/60 sm:w-52 sm:flex-col sm:items-start sm:p-5",
+                side === "middle" && "relative z-2 bg-bark-800 transition duration-500 ease-soft sm:hover:z-10 sm:hover:-translate-y-3",
                 side === "left" && "neo-card sm:-mr-5",
-                side === "right" && "neo-card sm:-ml-5",
-                phase === "enter" && "neo-surface",
-                phase === "leave" && "neo-sink"
+                side === "right" && "neo-card sm:-ml-5"
             )}>
-            <img src={project.icon} alt="" width={64} height={64} className="size-16 rounded-xl border border-line" />
-            <span className="flex flex-col gap-1">
+            <img src={project.icon} alt="" width={64} height={64} className="size-14 shrink-0 rounded-xl border border-line sm:size-16" />
+            <span className="flex min-w-0 flex-col gap-1">
                 <span className="font-semibold text-cream-50">{project.name}</span>
                 <span className="font-mono text-xs text-oak-300">{project.downloads !== undefined && `${compact(project.downloads)} downloads`}</span>
                 <span className="text-sm text-cream-400">{project.text}</span>
