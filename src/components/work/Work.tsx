@@ -8,7 +8,6 @@ import NeoPanel from "@/components/work/NeoPanel";
 import StudioPanel from "@/components/work/StudioPanel";
 import WebPanel from "@/components/work/WebPanel";
 import WhisperPanel from "@/components/work/WhisperPanel";
-import { cn } from "@/lib/utils";
 
 type TabId = "leaf" | "neo" | "whisper" | "studio" | "engine" | "web";
 type Tab = { id: TabId; name: string; meta: string; image?: string };
@@ -45,13 +44,23 @@ export default function Work() {
                     role="tablist"
                     aria-orientation="vertical"
                     onKeyDown={onKeyDown}
-                    className="no-scrollbar -mx-6 flex gap-2 overflow-x-auto px-6 sm:-mx-10 sm:px-10 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0">
+                    className="relative grid grid-cols-3 justify-items-center gap-3 sm:grid-cols-2 sm:justify-items-stretch sm:gap-2 lg:flex lg:flex-col lg:self-start">
                     {TABS.map((tab) => (
                         <TabButton key={tab.id} tab={tab} selected={active === tab.id} onSelect={() => setActive(tab.id)} />
                     ))}
+                    <span
+                        aria-hidden
+                        className="tab-indicator pointer-events-none rounded-xl border border-oak-600/60 bg-bark-800 max-sm:hexagon max-sm:rounded-none max-sm:border-0 max-sm:bg-oak-500"
+                    />
                 </div>
                 {TABS.map((tab) => (
-                    <div key={tab.id} role="tabpanel" id={`panel-${tab.id}`} aria-labelledby={`tab-${tab.id}`} hidden={active !== tab.id} className="enter flex min-w-0 flex-col">
+                    <div
+                        key={tab.id}
+                        role="tabpanel"
+                        id={`panel-${tab.id}`}
+                        aria-labelledby={`tab-${tab.id}`}
+                        hidden={active !== tab.id}
+                        className="flex min-w-0 flex-col transition duration-500 ease-emphasized starting:translate-y-2 starting:opacity-0">
                         <Panel id={tab.id} />
                     </div>
                 ))}
@@ -70,15 +79,12 @@ function TabButton({ tab, selected, onSelect }: { tab: Tab; selected: boolean; o
             aria-controls={`panel-${tab.id}`}
             tabIndex={selected ? 0 : -1}
             onClick={onSelect}
-            className={cn(
-                "flex shrink-0 cursor-pointer items-center gap-4 rounded-xl border px-4 py-3.5 text-left transition-colors duration-200",
-                selected ? "border-oak-600/60 bg-bark-800" : "border-line bg-bark-950/60 hover:border-bark-700 hover:bg-bark-950"
-            )}>
-            <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-bark-900 text-oak-400">
-                {tab.image ? <img src={tab.image} alt="" width={44} height={44} className="size-full object-cover" /> : <Icon name="language" />}
+            className="group relative z-1 flex min-w-0 cursor-pointer items-center gap-4 rounded-xl border border-line bg-bark-950/60 px-4 py-3.5 text-left transition-colors duration-200 aria-selected:tab-anchor aria-selected:border-transparent aria-selected:bg-transparent max-sm:hexagon max-sm:w-20 max-sm:rounded-none max-sm:border-0 max-sm:bg-line max-sm:p-0.5 sm:not-aria-selected:hover:border-bark-700 sm:not-aria-selected:hover:bg-bark-950">
+            <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-bark-900 text-oak-400 transition-colors max-sm:hexagon max-sm:size-full max-sm:rounded-none max-sm:border-0 max-sm:group-aria-selected:bg-bark-800">
+                {tab.image ? <img src={tab.image} alt="" width={44} height={44} className="size-full object-cover max-sm:size-10 max-sm:rounded-lg" /> : <Icon name="language" />}
             </span>
-            <span className="flex flex-col">
-                <span className={cn("font-semibold whitespace-nowrap", selected ? "text-cream-50" : "text-cream-200")}>{tab.name}</span>
+            <span className="flex min-w-0 flex-col max-sm:sr-only">
+                <span className="font-semibold text-cream-200 transition-colors group-aria-selected:text-cream-50 lg:whitespace-nowrap">{tab.name}</span>
                 <span className="font-mono text-label whitespace-nowrap text-cream-500">{tab.meta}</span>
             </span>
         </button>
