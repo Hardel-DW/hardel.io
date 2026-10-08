@@ -7,6 +7,7 @@ import type { Site } from "@/lib/projects";
 const SITES: readonly Site[] = [
     { name: "Voxel", domain: "voxel.hardel.io", href: "https://voxel.hardel.io", text: "Hub for my datapacks and tools", image: "/sites/voxel.webp" },
     { name: "Leafs", domain: "leafs.hardel.io", href: "https://leafs.hardel.io", text: "Docs for a multithreading mod", image: "/sites/leafs.webp" },
+    { name: "Oneiric Forge", domain: "oneiricforge.com", href: "https://www.oneiricforge.com/en-us/", text: "Home of a mapmaking team", image: "/sites/oneiricforge.webp" },
     { name: "Hardel", domain: "hardel.io", href: "https://hardel.io", text: "This cutty page", image: "/sites/hardel.webp" }
 ];
 
