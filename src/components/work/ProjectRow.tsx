@@ -16,9 +16,9 @@ export default function ProjectRow({ project, delay }: { project: Project; delay
                 <span className="font-semibold text-cream-50">{project.name}</span>
                 <span className="truncate text-sm text-cream-400">{project.text}</span>
             </span>
-            {project.downloads !== undefined && <span className="hidden shrink-0 font-mono text-[13px] text-cream-500 sm:block">{compact(project.downloads)} downloads</span>}
+            {project.downloads !== undefined && <span className="hidden shrink-0 font-mono text-label text-cream-500 sm:block">{compact(project.downloads)} downloads</span>}
             {project.status && (
-                <span className="hidden shrink-0 items-center gap-2 font-mono text-[13px] text-cream-500 sm:flex">
+                <span className="hidden shrink-0 items-center gap-2 font-mono text-label text-cream-500 sm:flex">
                     <span className={cn("size-1.5 rounded-full", project.status === "Beta" ? "bg-leaf-400" : "bg-oak-400")} />
                     {project.status}
                 </span>

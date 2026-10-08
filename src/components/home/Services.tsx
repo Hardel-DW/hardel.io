@@ -53,8 +53,8 @@ function Service({ icon, title, index, children }: { icon: IconName; title: stri
                 <Icon name={icon} />
             </span>
             <div className="relative flex flex-col gap-1.5">
-                <h3 className="text-[17px] font-semibold text-cream-50">{title}</h3>
-                <p className="keys text-[15px] text-pretty text-cream-400">{children}</p>
+                <h3 className="text-lead font-semibold text-cream-50">{title}</h3>
+                <p className="keys text-ui text-pretty text-cream-400">{children}</p>
             </div>
         </li>
     );
@@ -63,10 +63,10 @@ function Service({ icon, title, index, children }: { icon: IconName; title: stri
 function Waves({ index }: { index: number }) {
     return (
         <div className="pointer-events-none absolute -top-2 -right-15 h-14 w-80 origin-center rotate-28 overflow-hidden" aria-hidden>
-            <svg viewBox="0 0 444 40" className="wave absolute -top-1.5 left-0 h-10 w-111 text-oak-600/45" style={{ "--duration": `${18 + index * 3}s` }}>
+            <svg viewBox="0 0 444 40" className="animate-wave absolute -top-1.5 left-0 h-10 w-111 text-oak-600/45" style={{ "--duration": `${18 + index * 3}s` }}>
                 <path d={WAVE} fill="none" stroke="currentColor" strokeWidth={1.4} strokeLinecap="round" />
             </svg>
-            <svg viewBox="0 0 444 40" className="wave absolute top-3 left-0 h-10 w-111 text-oak-600/30" style={{ "--duration": `${27 + index * 2}s` }}>
+            <svg viewBox="0 0 444 40" className="animate-wave absolute top-3 left-0 h-10 w-111 text-oak-600/30" style={{ "--duration": `${27 + index * 2}s` }}>
                 <path d={WAVE} fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" />
             </svg>
         </div>

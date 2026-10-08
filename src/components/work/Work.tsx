@@ -79,7 +79,7 @@ function TabButton({ tab, selected, onSelect }: { tab: Tab; selected: boolean; o
             </span>
             <span className="flex flex-col">
                 <span className={cn("font-semibold whitespace-nowrap", selected ? "text-cream-50" : "text-cream-200")}>{tab.name}</span>
-                <span className="font-mono text-[13px] whitespace-nowrap text-cream-500">{tab.meta}</span>
+                <span className="font-mono text-label whitespace-nowrap text-cream-500">{tab.meta}</span>
             </span>
         </button>
     );

@@ -15,7 +15,7 @@ export default function Header() {
             <div className="page">
                 <div className="card flex h-14 items-center gap-6 pr-2.5 pl-4">
                     <nav className="scroll-spy flex items-center gap-6">
-                        <a href="/#top" className="flex shrink-0 items-center gap-2.5 font-mono text-[15px] font-semibold text-cream-50">
+                        <a href="/#top" className="flex shrink-0 items-center gap-2.5 font-mono text-ui font-semibold text-cream-50">
                             <HexImage src="/favicon.png" alt="" size={28} eager className="w-7" />
                             hardel.io
                         </a>
@@ -37,7 +37,7 @@ export default function Header() {
                         ))}
                         <a
                             href="/#contact"
-                            className="bevel ml-2 hidden h-9 items-center gap-2 bg-oak-600 px-4 text-sm font-semibold text-white transition-colors duration-150 [--bevel:8px] hover:bg-oak-500 sm:flex">
+                            className="bevel ml-2 hidden h-9 items-center gap-2 bg-oak-600 px-4 text-sm font-semibold text-white transition-colors duration-150 bevel-2 hover:bg-oak-500 sm:flex">
                             Commission
                         </a>
                         <button type="button" popoverTarget="menu" aria-label="Menu" className="grid size-9 cursor-pointer place-items-center rounded-lg text-cream-200 hover:bg-bark-800 md:hidden">
@@ -51,7 +51,7 @@ export default function Header() {
                     onClick={closeOnLink}
                     className="card scroll-spy fixed top-[calc(3.5rem+var(--gap)*2)] right-(--gap) left-(--gap) m-0 w-auto flex-col gap-1 p-2 open:flex md:hidden">
                     <NavLinks />
-                    <a href="/#contact" className="bevel mt-1 flex h-10 items-center justify-center bg-oak-600 text-sm font-semibold text-white [--bevel:8px]">
+                    <a href="/#contact" className="bevel mt-1 flex h-10 items-center justify-center bg-oak-600 text-sm font-semibold text-white bevel-2">
                         Commission
                     </a>
                 </nav>
@@ -65,7 +65,7 @@ function NavLinks() {
         <a
             key={item.id}
             href={`/#${item.id}`}
-            className="shrink-0 rounded-lg px-3 py-1.5 text-[15px] font-medium text-cream-400 transition-colors duration-150 hover:text-cream-50 current:bg-bark-800 current:text-cream-50">
+            className="shrink-0 rounded-lg px-3 py-1.5 text-ui font-medium text-cream-400 transition-colors duration-150 hover:text-cream-50 current:bg-bark-800 current:text-cream-50">
             {item.label}
         </a>
     ));

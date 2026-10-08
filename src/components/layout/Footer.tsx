@@ -6,7 +6,7 @@ export default function Footer() {
     return (
         <footer className="page">
             <div className="flex flex-col items-center gap-5 border-t border-line py-12 text-center">
-                <a href="/#top" className="flex items-center gap-2.5 font-mono text-[15px] font-semibold text-cream-50">
+                <a href="/#top" className="flex items-center gap-2.5 font-mono text-ui font-semibold text-cream-50">
                     <HexImage src="/favicon.png" alt="" size={28} className="w-7" />
                     hardel.io
                 </a>
@@ -25,7 +25,7 @@ export default function Footer() {
                 </div>
                 <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
                     {NAV.map((item) => (
-                        <a key={item.id} href={`/#${item.id}`} className="font-mono text-[13px] text-cream-400 transition-colors hover:text-cream-50">
+                        <a key={item.id} href={`/#${item.id}`} className="font-mono text-label text-cream-400 transition-colors hover:text-cream-50">
                             {item.label}
                         </a>
                     ))}

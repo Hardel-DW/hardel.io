@@ -1,4 +1,4 @@
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
 
 type ClassValue = ClassValue[] | Record<string, unknown> | string | number | null | boolean | undefined;
 
@@ -12,6 +12,10 @@ function toVal(value: ClassValue): string {
     }
     return "";
 }
+
+const twMerge = extendTailwindMerge({
+    extend: { theme: { text: ["micro", "label", "ui", "lead", "heading-sm", "heading", "display-sm", "display"] } }
+});
 
 export const cn = (...args: ClassValue[]) => twMerge(args.map(toVal).filter(Boolean).join(" "));
 

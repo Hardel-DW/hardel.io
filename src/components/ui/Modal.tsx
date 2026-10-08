@@ -21,7 +21,7 @@ export default function Modal({ label, onClose, onKeyDown, children }: ModalProp
             onClose={onClose}
             onClick={closeOnBackdrop}
             onKeyDown={onKeyDown}
-            className="m-0 h-dvh max-h-none w-dvw max-w-none place-items-center bg-transparent p-4 text-cream-200 transition-[opacity,display,overlay] transition-discrete duration-200 ease-soft open:grid starting:open:opacity-0 sm:p-10">
+            className="m-0 h-dvh max-h-none w-dvw max-w-none place-items-center bg-transparent p-4 text-cream-200 transition transition-discrete duration-200 ease-soft open:grid starting:open:opacity-0 sm:p-10">
             <button
                 type="button"
                 aria-label="Close"

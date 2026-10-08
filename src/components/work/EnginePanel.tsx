@@ -192,17 +192,17 @@ function tokenClass(kind: Kind) {
 
 function Preview() {
     return (
-        <div className="card flex w-60 flex-col gap-4 border-bark-700 p-5 shadow-[0_24px_48px_-16px_rgb(0_0_0/0.75)] sm:absolute sm:right-5 sm:bottom-5">
+        <div className="card flex w-60 flex-col gap-4 border-bark-700 p-5 shadow-float sm:absolute sm:right-5 sm:bottom-5">
             <div className="flex items-center gap-2.5">
                 <span className="font-semibold text-cream-50">Hello world</span>
             </div>
             <p className="text-sm text-cream-400">
-                You mined <span className="count tabular font-mono font-semibold text-oak-400" style={{ "--to": 1284 }} /> blocks
+                You mined <span className="count font-mono font-semibold text-oak-400 tabular-nums" style={{ "--to": 1284 }} /> blocks
             </p>
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-bark-800">
-                <div className="grow h-full w-2/3 rounded-full bg-oak-500" />
+                <div className="h-full w-2/3 origin-left animate-grow rounded-full bg-oak-500" />
             </div>
-            <span className="bevel grid h-9 place-items-center bg-oak-600 text-sm font-semibold text-white [--bevel:8px]">Claim reward</span>
+            <span className="bevel grid h-9 place-items-center bg-oak-600 text-sm font-semibold text-white bevel-2">Claim reward</span>
         </div>
     );
 }

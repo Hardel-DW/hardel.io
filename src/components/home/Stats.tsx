@@ -19,7 +19,7 @@ export default function Stats() {
                     <Plus />
                 </Stat>
                 <Stat icon="download" label="Downloads" className="border-l">
-                    <span className="count tabular" style={{ "--to": Math.floor(MODRINTH_DOWNLOADS / 1000) }}>
+                    <span className="count tabular-nums" style={{ "--to": Math.floor(MODRINTH_DOWNLOADS / 1000) }}>
                         K
                     </span>
                     <Plus />
@@ -45,7 +45,7 @@ function Stat({ icon, label, className, children }: { icon: IconName; label: str
         <div className={cn("flex flex-col gap-2 border-line px-6 py-7 lg:px-10", className)}>
             <Icon name={icon} className="size-6 text-oak-400" />
             <dd className="text-4xl font-semibold tracking-display text-cream-50">{children}</dd>
-            <dt className="font-mono text-[13px] text-cream-400">{label}</dt>
+            <dt className="font-mono text-label text-cream-400">{label}</dt>
         </div>
     );
 }

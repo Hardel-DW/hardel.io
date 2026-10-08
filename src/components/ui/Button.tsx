@@ -17,7 +17,7 @@ export default function Button({ variant = "secondary", glow, className, href, c
             target={external ? "_blank" : undefined}
             rel={external ? "noreferrer" : undefined}
             className={cn(
-                "bevel group relative inline-flex h-11 items-center justify-center gap-2 px-5 text-[15px] font-semibold whitespace-nowrap transition-colors duration-150 ease-soft",
+                "bevel group relative inline-flex h-11 items-center justify-center gap-2 px-5 text-ui font-semibold whitespace-nowrap transition-colors duration-150 ease-soft",
                 glow ? "text-white" : VARIANTS[variant],
                 className
             )}

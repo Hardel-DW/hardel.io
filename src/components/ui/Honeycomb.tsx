@@ -15,7 +15,7 @@ export default function Honeycomb({ data, className }: { data: HoneycombData; cl
                         <polygon
                             key={cell.id}
                             points={cell.points}
-                            className={cn("honey", cell.leaf ? "fill-leaf-600" : "fill-oak-500")}
+                            className={cn("opacity-0 animate-honey", cell.leaf ? "fill-leaf-600" : "fill-oak-500")}
                             style={{ "--delay": `${cell.delay}s`, "--duration": `${cell.duration}s`, "--peak": cell.peak }}
                         />
                     ))}

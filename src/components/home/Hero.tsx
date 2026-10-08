@@ -17,15 +17,15 @@ export default function Hero() {
                 <div className="rise">
                     <Intro />
                 </div>
-                <h1 className="rise text-[34px] leading-[1.15] font-semibold tracking-display text-balance text-cream-50 sm:text-[42px]" style={{ "--delay": "80ms" }}>
+                <h1 className="rise text-display-sm font-semibold tracking-display text-balance text-cream-50 sm:text-display" style={{ "--delay": "80ms" }}>
                     Minecraft <Tag>datapack</Tag> & <Tag>mod</Tag> developer
                 </h1>
-                <p className="keys rise max-w-lg text-[17px] text-pretty text-cream-400" style={{ "--delay": "160ms" }}>
+                <p className="keys rise max-w-lg text-lead text-pretty text-cream-400" style={{ "--delay": "160ms" }}>
                     From vanilla <strong>datapacks</strong> to full <strong>Fabric</strong> and <strong>NeoForge</strong> mods, with <strong>worldgen</strong>, <strong>shaders</strong>,{" "}
                     <strong>3D models</strong> and the <strong>websites</strong> around them. Playing since Beta 1.7, developing since 1.12.
                 </p>
                 <div className="rise flex flex-col gap-3 pt-2" style={{ "--delay": "240ms" }}>
-                    <p className="font-mono text-[13px] text-cream-500">Working with amazing content creators</p>
+                    <p className="font-mono text-label text-cream-500">Working with amazing content creators</p>
                     <div className="flex items-center gap-2.5">
                         {CREATORS.map((creator) => (
                             <a
@@ -43,14 +43,14 @@ export default function Hero() {
                 </div>
             </div>
             <div className="relative flex min-h-115 flex-col items-center justify-center gap-6 overflow-hidden border-line max-lg:border-t lg:border-l">
-                <Honeycomb data={COMB} className="mask-[radial-gradient(ellipse_70%_80%_at_50%_50%,#000_30%,transparent_78%)]" />
+                <Honeycomb data={COMB} className="mask-radial-[70%_80%] mask-radial-from-30% mask-radial-to-78%" />
                 <HexImage src="/hardel.webp" alt="Hardel" size={264} live eager className="rise w-56 sm:w-64" />
                 <div className="rise relative flex flex-col items-center gap-3" style={{ "--delay": "200ms" }}>
                     <Button glow href="#contact" className="h-12 px-6 text-base">
                         Start a commission
                         <Icon name="arrowForward" className="size-4.5" />
                     </Button>
-                    <p className="flex items-center gap-2 font-mono text-[13px] text-cream-400">
+                    <p className="flex items-center gap-2 font-mono text-label text-cream-400">
                         <span className="size-2 rounded-full bg-leaf-400" />
                         Open for commissions
                     </p>

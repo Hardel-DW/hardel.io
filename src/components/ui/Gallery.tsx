@@ -42,7 +42,7 @@ function Chip({ selected, onSelect, children }: { selected: boolean; onSelect: (
             aria-pressed={selected}
             onClick={onSelect}
             className={cn(
-                "h-8 shrink-0 cursor-pointer rounded-full border px-3.5 font-mono text-[13px] transition-colors duration-150",
+                "h-8 shrink-0 cursor-pointer rounded-full border px-3.5 font-mono text-label transition-colors duration-150",
                 selected ? "border-oak-500 bg-oak-600 text-white" : "border-line text-cream-400 hover:border-bark-700 hover:text-cream-50"
             )}>
             {children}
@@ -64,10 +64,10 @@ function Tile({ shot, shown, delay, onOpen }: { shot: Shot; shown: boolean; dela
                 shot.span === "wide" && "col-span-2",
                 shot.span === "tall" && "row-span-2"
             )}>
-            <Picture src={shot.src} alt="" className="size-full object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.03]" />
-            <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center gap-2 rounded-lg bg-bark-950/85 px-3 py-1.5 opacity-0 transition-[opacity,translate] duration-300 ease-soft group-hover:translate-y-0 group-hover:opacity-100">
+            <Picture src={shot.src} alt="" className="size-full object-cover transition-transform duration-700 ease-soft group-hover:scale-103" />
+            <span className="absolute inset-x-3 bottom-3 flex translate-y-2 items-center gap-2 rounded-lg bg-bark-950/85 px-3 py-1.5 opacity-0 transition duration-300 ease-soft group-hover:translate-y-0 group-hover:opacity-100">
                 <span className="text-sm font-medium text-cream-50">{shot.title}</span>
-                <span className="ml-auto font-mono text-[11px] text-oak-300">{shot.kind}</span>
+                <span className="ml-auto font-mono text-micro text-oak-300">{shot.kind}</span>
             </span>
         </button>
     );
@@ -91,7 +91,7 @@ function Lightbox({ shots, shot, onShot, onClose }: LightboxProps) {
                         <p className="font-semibold text-cream-50">{shot.title}</p>
                         <p className="truncate text-sm text-cream-400">{shot.caption}</p>
                     </div>
-                    <span className="tabular font-mono text-sm text-cream-500">
+                    <span className="font-mono text-sm text-cream-500 tabular-nums">
                         {index + 1} / {shots.length}
                     </span>
                     <Arrow label="Previous" icon="chevronLeft" onClick={() => step(-1)} />
