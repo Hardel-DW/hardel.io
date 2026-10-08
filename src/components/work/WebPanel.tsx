@@ -5,9 +5,9 @@ import PanelIntro from "@/components/work/PanelIntro";
 import type { Site } from "@/lib/projects";
 
 const SITES: readonly Site[] = [
-    { name: "Voxel", domain: "voxel.hardel.io", href: "https://voxel.hardel.io", text: "Hub for my datapacks and tools.", image: "/sites/voxel.webp" },
-    { name: "Leafs", domain: "leafs.hardel.io", href: "https://leafs.hardel.io", text: "Interactive docs for a multithreading mod.", image: "/sites/leafs.webp" },
-    { name: "Hardel", domain: "hardel.io", href: "https://hardel.io", text: "This page.", image: "/sites/hardel.webp" }
+    { name: "Voxel", domain: "voxel.hardel.io", href: "https://voxel.hardel.io", text: "Hub for my datapacks and tools", image: "/sites/voxel.webp" },
+    { name: "Leafs", domain: "leafs.hardel.io", href: "https://leafs.hardel.io", text: "Docs for a multithreading mod", image: "/sites/leafs.webp" },
+    { name: "Hardel", domain: "hardel.io", href: "https://hardel.io", text: "This cutty page", image: "/sites/hardel.webp" }
 ];
 
 export default function WebPanel() {
@@ -18,14 +18,24 @@ export default function WebPanel() {
             </PanelIntro>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                 {SITES.map((site) => (
-                    <a key={site.domain} href={site.href} target="_blank" rel="noreferrer" className="group flex flex-col gap-3">
-                        <BrowserFrame domain={site.domain} title={site.name} className="bg-bark-950 transition-colors duration-200 group-hover:border-bark-700">
-                            <Picture src={site.image} alt={site.name} eager className="aspect-16/10 w-full object-cover object-top" />
+                    <a key={site.domain} href={site.href} target="_blank" rel="noreferrer" className="group">
+                        <BrowserFrame domain={site.domain} className="flex h-full flex-col bg-bark-950 transition-colors duration-200 group-hover:border-bark-700">
+                            <span className="overflow-hidden">
+                                <Picture
+                                    src={site.image}
+                                    alt={site.name}
+                                    eager
+                                    className="aspect-16/10 w-full object-cover object-top transition-transform duration-700 ease-soft group-hover:scale-103"
+                                />
+                            </span>
+                            <span className="flex flex-1 items-center justify-between gap-3 border-t border-line px-4 py-2">
+                                <span className="text-sm text-cream-400 transition-colors group-hover:text-cream-200">{site.text}</span>
+                                <Icon
+                                    name="northEast"
+                                    className="size-4 text-cream-500 transition duration-300 ease-soft group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-oak-400"
+                                />
+                            </span>
                         </BrowserFrame>
-                        <span className="flex items-center justify-between gap-3 px-1 max-sm:hidden">
-                            <span className="text-sm text-cream-400">{site.text}</span>
-                            <Icon name="northEast" className="size-4 text-cream-500 transition-colors group-hover:text-oak-400" />
-                        </span>
                     </a>
                 ))}
             </div>
