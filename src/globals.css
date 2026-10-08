@@ -1,0 +1,457 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Bricolage";
+    src: url("/fonts/bricolage-latin.woff2") format("woff2");
+    font-weight: 200 800;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Bricolage";
+    src: url("/fonts/bricolage-latin-ext.woff2") format("woff2");
+    font-weight: 200 800;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/fonts/jetbrains-mono-latin.woff2") format("woff2");
+    font-weight: 100 800;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/fonts/jetbrains-mono-latin-ext.woff2") format("woff2");
+    font-weight: 100 800;
+    font-display: swap;
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Minecraft";
+    src: url("/fonts/minecraft.woff") format("woff");
+    font-display: swap;
+}
+
+@theme static {
+    --color-*: initial;
+    --color-transparent: transparent;
+    --color-black: oklch(0 0 0);
+    --color-white: oklch(1 0 0);
+
+    --color-bark-950: oklch(0.15 0.009 60);
+    --color-bark-900: oklch(0.18 0.01 60);
+    --color-bark-800: oklch(0.22 0.012 60);
+    --color-bark-700: oklch(0.3 0.014 60);
+    --color-line: oklch(0.26 0.012 60);
+
+    --color-cream-50: oklch(0.97 0.01 80);
+    --color-cream-200: oklch(0.88 0.016 78);
+    --color-cream-400: oklch(0.73 0.02 72);
+    --color-cream-500: oklch(0.6 0.02 68);
+
+    --color-oak-300: oklch(0.8 0.11 76);
+    --color-oak-400: oklch(0.76 0.14 68);
+    --color-oak-500: oklch(0.68 0.16 62);
+    --color-oak-600: oklch(0.56 0.13 56);
+
+    --color-leaf-400: oklch(0.75 0.15 145);
+    --color-leaf-600: oklch(0.52 0.13 147);
+    --color-youtube: oklch(0.62 0.22 27);
+
+    --font-sans: "Bricolage", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+    --font-game: "Minecraft", monospace;
+
+    --tracking-display: -0.02em;
+
+    --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+
+    @keyframes honey {
+        0%,
+        34%,
+        62%,
+        100% {
+            opacity: 0;
+        }
+        48% {
+            opacity: var(--peak);
+        }
+    }
+
+    @keyframes sway {
+        0%,
+        100% {
+            translate: 0 0;
+        }
+        50% {
+            translate: var(--sway, 3px) 0;
+        }
+    }
+
+    @keyframes caret {
+        0%,
+        45% {
+            opacity: 1;
+        }
+        55%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes orbit {
+        to {
+            rotate: 1turn;
+        }
+    }
+
+    @keyframes wave {
+        to {
+            translate: -148px 0;
+        }
+    }
+
+    @keyframes grow {
+        from {
+            scale: 0 1;
+        }
+    }
+}
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@property --n {
+    syntax: "<integer>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@keyframes turn {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@keyframes neo-surface {
+    0% {
+        translate: 0 var(--rest-y);
+        rotate: var(--rest-r);
+        z-index: 1;
+    }
+    45% {
+        translate: var(--out) 4px;
+        rotate: calc(var(--rest-r) / 2);
+        z-index: 1;
+    }
+    46% {
+        z-index: 10;
+    }
+    100% {
+        translate: 0 -12px;
+        rotate: 0deg;
+        z-index: 10;
+    }
+}
+
+@keyframes neo-sink {
+    0% {
+        translate: 0 -12px;
+        rotate: 0deg;
+        z-index: 10;
+    }
+    54% {
+        translate: var(--out) 4px;
+        rotate: calc(var(--rest-r) / 2);
+        z-index: 10;
+    }
+    55% {
+        z-index: 1;
+    }
+    100% {
+        translate: 0 var(--rest-y);
+        rotate: var(--rest-r);
+        z-index: 1;
+    }
+}
+
+@keyframes count {
+    from {
+        --n: 0;
+    }
+    to {
+        --n: var(--to);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        translate: 0 20px;
+    }
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        translate: 0 8px;
+    }
+}
+
+@custom-variant current (&:target-current);
+
+@utility scroll-spy {
+    scroll-target-group: auto;
+}
+
+@utility page {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: var(--gap);
+}
+
+@utility card {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-2xl);
+    background-color: var(--color-bark-900);
+}
+
+@utility bevel {
+    border-radius: calc(var(--bevel, 14px) * 0.7);
+
+    @supports (corner-shape: bevel) {
+        corner-shape: bevel;
+        border-radius: var(--bevel, 14px);
+    }
+}
+
+@utility bevel-face {
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(var(--bevel, 14px) * 0.7 - 1px);
+
+    @supports (corner-shape: bevel) {
+        corner-shape: bevel;
+        border-radius: calc(var(--bevel, 14px) - 0.6px);
+    }
+}
+
+@utility beam-ring {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    corner-shape: inherit;
+    background:
+        conic-gradient(from var(--angle), transparent 0deg, var(--color-oak-300) 40deg, transparent 90deg, transparent 180deg, var(--color-oak-400) 220deg, transparent 270deg),
+        linear-gradient(var(--color-oak-500), var(--color-oak-500));
+    animation: turn var(--duration, 8s) linear infinite;
+}
+
+@utility live-ring {
+    position: absolute;
+    inset: -1px;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: inherit;
+    padding: 1px;
+    container-type: size;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: var(--glow, 0.55);
+}
+
+@utility live-beam {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(hypot(100cqw, 100cqh) + 4px);
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background: conic-gradient(from 0deg, transparent 0deg, var(--color-oak-400) 30deg, transparent 70deg, transparent 200deg, var(--color-oak-500) 230deg, transparent 260deg);
+    animation: orbit var(--duration, 18s) var(--beam-ease, linear) infinite var(--direction, normal);
+}
+
+@utility hexagon {
+    clip-path: url("#hexagon");
+    aspect-ratio: 0.866;
+}
+
+@utility hex-ring {
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, var(--color-oak-600), var(--color-oak-300), var(--color-oak-600), var(--color-oak-400), var(--color-oak-600));
+    animation: orbit 14s linear infinite;
+}
+
+@utility honey {
+    opacity: 0;
+    animation: honey var(--duration, 10s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@utility sway {
+    animation: sway var(--duration, 4s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@utility caret {
+    animation: caret 1.1s steps(1) infinite;
+}
+
+@utility orbit {
+    animation: orbit var(--duration, 60s) linear infinite var(--direction, normal);
+}
+
+@utility wave {
+    animation: wave var(--duration, 16s) linear infinite;
+}
+
+@utility grow {
+    transform-origin: left;
+    animation: grow 1.4s var(--ease-emphasized) 300ms both;
+}
+
+@utility neo-card {
+    position: relative;
+    z-index: 1;
+    translate: 0 var(--rest-y);
+    rotate: var(--rest-r);
+}
+
+@utility neo-surface {
+    animation: neo-surface 480ms var(--ease-soft) both;
+}
+
+@utility neo-sink {
+    animation: neo-sink 480ms var(--ease-soft) both;
+}
+
+@utility fade-bottom {
+    mask-image: linear-gradient(#000 calc(100% - 40px), transparent);
+}
+
+@utility count {
+    counter-reset: n var(--n);
+    animation: count 1.8s var(--ease-soft) 300ms both;
+
+    &::before {
+        content: counter(n);
+    }
+}
+
+@utility enter {
+    animation: enter 380ms var(--ease-emphasized) both;
+}
+
+@utility rise {
+    transition:
+        opacity 700ms var(--ease-emphasized),
+        translate 700ms var(--ease-emphasized);
+    transition-delay: var(--delay, 0ms);
+
+    @starting-style {
+        opacity: 0;
+        translate: 0 12px;
+    }
+}
+
+@utility reveal {
+    @supports (animation-timeline: view()) {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%;
+    }
+}
+
+@utility tabular {
+    font-variant-numeric: tabular-nums;
+}
+
+@utility no-scrollbar {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@layer components {
+    .keys strong {
+        font-weight: 500;
+        color: var(--color-oak-300);
+    }
+}
+
+@layer base {
+    :root {
+        --gap: 2rem;
+
+        @media (width >= 40rem) {
+            --gap: 3rem;
+        }
+    }
+
+    html {
+        color-scheme: dark;
+        scrollbar-color: var(--color-bark-700) transparent;
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(3.5rem + var(--gap) * 2);
+        interpolate-size: allow-keywords;
+    }
+
+    html:has(dialog[open]) {
+        overflow: hidden;
+    }
+
+    body {
+        min-height: 100dvh;
+        background-color: var(--color-bark-950);
+        color: var(--color-cream-200);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        background-color: var(--color-oak-600);
+        color: var(--color-cream-50);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-oak-400);
+        outline-offset: 2px;
+    }
+
+    dialog::backdrop {
+        background-color: oklch(0.1 0.008 60 / 0.92);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        ::before,
+        ::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
