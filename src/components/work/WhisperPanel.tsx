@@ -1,5 +1,6 @@
+import Button from "@/components/ui/Button";
+import Icon from "@/components/ui/Icon";
 import Picture from "@/components/ui/Picture";
-import TextLink from "@/components/ui/TextLink";
 import PanelIntro from "@/components/work/PanelIntro";
 
 const WHISPER = {
@@ -23,10 +24,13 @@ export default function WhisperPanel() {
                 ))}
             </div>
             <div className="mt-auto flex flex-wrap gap-6">
-                <TextLink href={WHISPER.modrinth} icon="modrinth">
+                <Button variant="link" href={WHISPER.modrinth}>
+                    <Icon name="modrinth" className="size-4" />
                     Modrinth
-                </TextLink>
-                <TextLink href={WHISPER.curseforge}>CurseForge</TextLink>
+                </Button>
+                <Button variant="link" href={WHISPER.curseforge}>
+                    CurseForge
+                </Button>
             </div>
         </div>
     );

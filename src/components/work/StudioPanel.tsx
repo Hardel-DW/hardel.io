@@ -1,5 +1,5 @@
+import Button from "@/components/ui/Button";
 import Picture from "@/components/ui/Picture";
-import TextLink from "@/components/ui/TextLink";
 import PanelIntro from "@/components/work/PanelIntro";
 
 const STUDIO = {
@@ -15,9 +15,9 @@ export default function StudioPanel() {
                 with the server.
             </PanelIntro>
             <Picture src={STUDIO.image} alt="Voxel Studio" eager className="card aspect-video w-full object-cover object-top" />
-            <TextLink href={STUDIO.hub} className="mt-auto">
+            <Button variant="link" href={STUDIO.hub} className="mt-auto">
                 voxel.hardel.io
-            </TextLink>
+            </Button>
         </div>
     );
 }

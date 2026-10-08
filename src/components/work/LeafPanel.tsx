@@ -1,4 +1,5 @@
-import TextLink from "@/components/ui/TextLink";
+import Button from "@/components/ui/Button";
+import Icon from "@/components/ui/Icon";
 import PanelIntro from "@/components/work/PanelIntro";
 import ProjectRow from "@/components/work/ProjectRow";
 import type { Project } from "@/lib/projects";
@@ -22,12 +23,14 @@ export default function LeafPanel() {
                 ))}
             </div>
             <div className="mt-auto flex flex-wrap gap-6">
-                <TextLink href="https://leafs.hardel.io" icon="eco">
+                <Button variant="link" href="https://leafs.hardel.io">
+                    <Icon name="eco" className="size-4" />
                     leafs.hardel.io
-                </TextLink>
-                <TextLink href="https://github.com/Hardel-DW/leafs.mods" icon="github">
+                </Button>
+                <Button variant="link" href="https://github.com/Hardel-DW/leafs.mods">
+                    <Icon name="github" className="size-4" />
                     Source
-                </TextLink>
+                </Button>
             </div>
         </div>
     );

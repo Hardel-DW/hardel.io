@@ -1,4 +1,5 @@
-import TextLink from "@/components/ui/TextLink";
+import Button from "@/components/ui/Button";
+import Icon from "@/components/ui/Icon";
 import PanelIntro from "@/components/work/PanelIntro";
 import { MODRINTH_DOWNLOADS, MODRINTH_URL, type Project } from "@/lib/projects";
 import { cn, compact } from "@/lib/utils";
@@ -29,9 +30,10 @@ export default function NeoPanel() {
                     <NeoCard key={project.name} project={project} side={SIDES[index]} />
                 ))}
             </div>
-            <TextLink href={MODRINTH_URL} icon="modrinth" className="mt-auto">
+            <Button variant="link" href={MODRINTH_URL} className="mt-auto">
+                <Icon name="modrinth" className="size-4" />
                 {compact(MODRINTH_DOWNLOADS)}+ downloads on Modrinth
-            </TextLink>
+            </Button>
         </div>
     );
 }

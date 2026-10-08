@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SectionTitle from "@/components/home/SectionTitle";
+import Button from "@/components/ui/Button";
 import Icon from "@/components/ui/Icon";
 import Modal from "@/components/ui/Modal";
 import { CHANNEL, VIDEOS, type Video } from "@/lib/videos";
@@ -23,11 +24,10 @@ export default function Videos() {
                     </li>
                 ))}
             </ol>
-            <a href={CHANNEL} target="_blank" rel="noreferrer" className="group inline-flex items-center gap-2 font-mono text-sm text-oak-300 transition-colors hover:text-oak-400">
+            <Button variant="link" href={CHANNEL}>
                 <Icon name="youtube" className="size-4 text-youtube" />
                 All videos on YouTube
-                <Icon name="northEast" className="size-3.5 transition-transform duration-300 ease-soft group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Button>
             {playing && (
                 <Modal label={playing.title} onClose={() => setPlaying(null)}>
                     <div className="card aspect-video w-full max-w-6xl overflow-hidden">
